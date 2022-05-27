@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -83,7 +84,16 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun Search(navController: NavController){
-        Text("search")
+    fun Search(navController: NavController,viewModel: SearchViewModel = viewModel()){
+        val searchKeyword = viewModel.searchKeyword.collectAsState(initial = "")
+        val resultList = viewModel.list.collectAsState(initial = emptyList())
+        Column() {
+            TextField(value = searchKeyword.value.orEmpty(), onValueChange = {
+                viewModel.onNewSearchKeyword(it)
+            })
+            resultList.value.forEach {
+                Text(it.nameSc)
+            }
+        }
     }
 }

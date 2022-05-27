@@ -35,3 +35,19 @@ data class StopEta(
     @Json(name = "service_type")
     val serviceType: Int
 )
+
+@JsonClass(generateAdapter = true)
+data class Stop(
+    @Json(name = "lat")
+    val lat: String,
+    @Json(name = "long")
+    val long: String,
+    @Json(name = "name_en")
+    val nameEn: String,
+    @Json(name = "name_sc")
+    val nameSc: String,
+    @Json(name = "name_tc")
+    val nameTc: String,
+    @Json(name = "stop")
+    val stop: String
+)
