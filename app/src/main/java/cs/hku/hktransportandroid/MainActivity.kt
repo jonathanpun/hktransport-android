@@ -24,6 +24,9 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import cs.hku.hktransportandroid.screen.Home
+import cs.hku.hktransportandroid.screen.Search
+import cs.hku.hktransportandroid.screen.Stop
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,10 +37,10 @@ class MainActivity : ComponentActivity() {
                 Screen.Search,
             )
             val navController = rememberNavController()
+            val navBackStackEntry by navController.currentBackStackEntryAsState()
             Scaffold(
-                bottomBar = {
-                    BottomNavigation {
-                        val navBackStackEntry by navController.currentBackStackEntryAsState()
+                bottomBar = {when(navBackStackEntry?.destination?.route){
+                    in (items.map { it.route })-> BottomNavigation {
                         val currentDestination = navBackStackEntry?.destination
                         items.forEach { screen ->
                             BottomNavigationItem(
@@ -63,10 +66,12 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
+                }
             ) { innerPadding ->
                 NavHost(navController, startDestination = Screen.Home.route, Modifier.padding(innerPadding)) {
                     composable(Screen.Home.route) { Home(navController) }
                     composable(Screen.Search.route) { Search(navController) }
+                    composable(Screen.Stop.route){navBackStackEntry ->  Stop(navController,navBackStackEntry.arguments?.getString("Id").orEmpty())}
                 }
             }
         }
@@ -75,25 +80,10 @@ class MainActivity : ComponentActivity() {
     sealed class Screen(val route: String, @StringRes val resourceId: Int) {
         object Home : Screen("home", R.string.home)
         object Search : Screen("search", R.string.search)
+        object Stop:Screen("stop/{Id}",R.string.stop)
     }
 
-    @Composable
-    fun Home(navController: NavController, viewModel: HomeViewModel= viewModel()){
-        val eta =viewModel.list.collectAsState()
-        eta.value?.map {Text(it.destEn.orEmpty())  }
-    }
 
-    @Composable
-    fun Search(navController: NavController,viewModel: SearchViewModel = viewModel()){
-        val searchKeyword = viewModel.searchKeyword.collectAsState(initial = "")
-        val resultList = viewModel.list.collectAsState(initial = emptyList())
-        Column() {
-            TextField(value = searchKeyword.value.orEmpty(), onValueChange = {
-                viewModel.onNewSearchKeyword(it)
-            })
-            resultList.value.forEach {
-                Text(it.nameSc)
-            }
-        }
-    }
+
+
 }
