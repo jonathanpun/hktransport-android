@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -33,22 +35,22 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val items = listOf(
-                Screen.Home,
-                Screen.Search,
+                Screen.Home to Icons.Filled.Home,
+                Screen.Search to Icons.Filled.Search,
             )
             val navController = rememberNavController()
             val navBackStackEntry by navController.currentBackStackEntryAsState()
             Scaffold(
                 bottomBar = {when(navBackStackEntry?.destination?.route){
-                    in (items.map { it.route })-> BottomNavigation {
+                    in (items.map { it.first.route })-> BottomNavigation {
                         val currentDestination = navBackStackEntry?.destination
                         items.forEach { screen ->
                             BottomNavigationItem(
-                                icon = { Icon(Icons.Filled.Favorite, contentDescription = null) },
-                                label = { Text(stringResource(screen.resourceId)) },
-                                selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
+                                icon = { Icon(screen.second, contentDescription = null) },
+                                label = { Text(stringResource(screen.first.resourceId)) },
+                                selected = currentDestination?.hierarchy?.any { it.route == screen.first.route } == true,
                                 onClick = {
-                                    navController.navigate(screen.route) {
+                                    navController.navigate(screen.first.route) {
                                         // Pop up to the start destination of the graph to
                                         // avoid building up a large stack of destinations
                                         // on the back stack as users select items
