@@ -51,3 +51,25 @@ data class Stop(
     @Json(name = "stop")
     val stop: String
 )
+
+@JsonClass(generateAdapter = true)
+data class Route(
+    @Json(name = "bound")
+    val bound: String,
+    @Json(name = "dest_en")
+    val destEn: String,
+    @Json(name = "dest_sc")
+    val destSc: String,
+    @Json(name = "dest_tc")
+    val destTc: String,
+    @Json(name = "orig_en")
+    val origEn: String,
+    @Json(name = "orig_sc")
+    val origSc: String,
+    @Json(name = "orig_tc")
+    val origTc: String,
+    @Json(name = "route")
+    val route: String,
+    @Json(name = "service_type")
+    val serviceType: String
+)

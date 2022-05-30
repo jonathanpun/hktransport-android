@@ -24,6 +24,10 @@ class APIRepository {
         withContext(Dispatchers.IO){
             getService().searchStop(q)
         }
+    suspend fun searchRoute(q:String,limit:Int):List<Route> =
+        withContext(Dispatchers.IO){
+            getService().searchRoute(q,limit)
+        }
     suspend fun getStop(stopId:String):Stop =
         withContext(Dispatchers.IO){
             getService().getStop(stopId)
