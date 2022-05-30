@@ -15,7 +15,7 @@ class SearchViewModel:ViewModel() {
         if (it.isNullOrBlank())
             emptyList<Stop>()
         else
-            emit(repository.getStop(it))
+            emit(repository.searchStop(it))
     }
 
     fun onNewSearchKeyword(q:String){

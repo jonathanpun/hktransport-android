@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 
@@ -49,13 +50,13 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
     //compose
-    implementation 'androidx.compose.ui:ui:1.1.1'
+    implementation 'androidx.compose.ui:ui:1.2.0-beta02'
     // Tooling support (Previews, etc.)
-    implementation 'androidx.compose.ui:ui-tooling:1.1.1'
+    implementation 'androidx.compose.ui:ui-tooling:1.2.0-beta02'
     // Foundation (Border, Background, Box, Image, Scroll, shapes, animations, etc.)
-    implementation 'androidx.compose.foundation:foundation:1.1.1'
+    implementation "androidx.compose.foundation:foundation:1.2.0-beta02"
     // Material Design
-    implementation 'androidx.compose.material:material:1.1.1'
+    implementation 'androidx.compose.material:material:1.2.0-beta02'
     // Material design icons
     implementation 'androidx.compose.material:material-icons-core:1.1.1'
     implementation 'androidx.compose.material:material-icons-extended:1.1.1'
@@ -72,6 +73,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
     //logging
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    //google map
+    implementation 'com.google.maps.android:maps-compose:2.1.1'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
     //moshi
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"

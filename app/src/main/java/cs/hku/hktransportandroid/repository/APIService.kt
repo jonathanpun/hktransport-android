@@ -8,5 +8,7 @@ interface APIService {
     @GET("/stops-eta/{stopId}")
     suspend fun getStopEta(@Path("stopId") stopId:String):List<StopEta>
     @GET("/stops")
-    suspend fun getStop(@Query("q") query: String):List<Stop>
+    suspend fun searchStop(@Query("q") query: String):List<Stop>
+    @GET("/stop/{stop}")
+    suspend fun getStop(@Path("stop") stopId:String):Stop
 }

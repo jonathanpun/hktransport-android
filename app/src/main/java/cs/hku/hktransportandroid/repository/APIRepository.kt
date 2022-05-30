@@ -20,8 +20,12 @@ class APIRepository {
         withContext(Dispatchers.IO){
             getService().getStopEta(stopId)
         }
-    suspend fun getStop(q:String):List<Stop> =
+    suspend fun searchStop(q:String):List<Stop> =
         withContext(Dispatchers.IO){
-            getService().getStop(q)
+            getService().searchStop(q)
+        }
+    suspend fun getStop(stopId:String):Stop =
+        withContext(Dispatchers.IO){
+            getService().getStop(stopId)
         }
 }
