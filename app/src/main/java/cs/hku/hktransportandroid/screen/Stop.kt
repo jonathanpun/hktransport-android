@@ -11,13 +11,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import cs.hku.hktransportandroid.StopViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.google.android.gms.maps.CameraUpdate
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.rememberCameraPositionState
-import cs.hku.hktransportandroid.repository.StopEta
+import cs.hku.hktransportandroid.screen.view.StopEta
 
 @Composable
 fun Stop(navController: NavController,stopId:String,viewModel: StopViewModel = viewModel(factory = object :ViewModelProvider.Factory{
@@ -43,18 +42,8 @@ fun Stop(navController: NavController,stopId:String,viewModel: StopViewModel = v
             cameraPositionState = cameraPositionState
         )
         stopEta.value?.map {
-            StopEta(stopEta = it)
+//            StopEta(stopEta = it)
         }
     }
 }
 
-@Composable
-fun StopEta(stopEta: StopEta){
-    Column() {
-        Text(text = stopEta.route)
-        Row() {
-            Text(text = stopEta.destTc)
-            Text(text = stopEta.eta.orEmpty())
-        }
-    }
-}

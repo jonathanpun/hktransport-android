@@ -2,8 +2,11 @@ package cs.hku.hktransportandroid.screen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -12,17 +15,19 @@ import androidx.navigation.NavController
 import cs.hku.hktransportandroid.SearchViewModel
 
 @Composable
-fun Search(navController: NavController, viewModel: SearchViewModel = viewModel()){
+fun Search(navController: NavController, viewModel: SearchViewModel = viewModel()) {
     val searchKeyword = viewModel.searchKeyword.collectAsState(initial = "")
     val resultList = viewModel.list.collectAsState(initial = emptyList())
-    Column() {
-        TextField(value = searchKeyword.value.orEmpty(), onValueChange = {
-            viewModel.onNewSearchKeyword(it)
-        })
-        resultList.value.forEach {
-            Text(it.nameSc, modifier = Modifier.clickable {
-                navController.navigate("stop/${it.stop}")
+    Scaffold(topBar = {TopAppBar(title = { Text("Search") })}) {
+        Column(Modifier.padding(it)) {
+            TextField(value = searchKeyword.value.orEmpty(), onValueChange = {
+                viewModel.onNewSearchKeyword(it)
             })
+            resultList.value.forEach {
+                Text(it.nameSc, modifier = Modifier.clickable {
+                    navController.navigate("stop/${it.stop}")
+                })
+            }
         }
     }
 }
