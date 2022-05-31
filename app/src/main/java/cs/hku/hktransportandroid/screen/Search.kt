@@ -37,7 +37,9 @@ fun Search(navController: NavController, viewModel: SearchViewModel = viewModel(
                 if (searchResult.stops.isNotEmpty()){
                     Text(text = "Stop", modifier = Modifier.padding(start = 16.dp), fontSize = 16.sp)
                     searchResult.stops.map {
-                        Text(text = it.nameTc, modifier = Modifier.padding(start = 24.dp), fontSize = 14.sp)
+                        Text(text = it.nameTc, modifier = Modifier.padding(start = 24.dp).clickable {
+                            navController.navigate("stop/${it.stop}")
+                        }, fontSize = 14.sp)
                     }
                 }
                 
