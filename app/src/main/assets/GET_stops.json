@@ -1,0 +1,66 @@
+[
+  {
+    "lat": "22.373034",
+    "long": "114.180291",
+    "name_en": "TAI WAI STATION BUS TERMINUS",
+    "name_sc": "大围站总站",
+    "name_tc": "大圍站總站",
+    "stop": "0390D5DEEEC05A7B"
+  },
+  {
+    "lat": "22.372631",
+    "long": "114.180352",
+    "name_en": "TAI WAI STATION",
+    "name_sc": "大围站",
+    "name_tc": "大圍站",
+    "stop": "156FFE36D7D42EFE"
+  },
+  {
+    "lat": "22.373074",
+    "long": "114.180370",
+    "name_en": "TAI WAI STATION BUS TERMINUS",
+    "name_sc": "大围站总站",
+    "name_tc": "大圍站總站",
+    "stop": "3CEFE1F7CC598005"
+  },
+  {
+    "lat": "22.372928",
+    "long": "114.180132",
+    "name_en": "TAI WAI STATION BUS TERMINUS",
+    "name_sc": "大围站总站",
+    "name_tc": "大圍站總站",
+    "stop": "6A46C83B59AAB8E0"
+  },
+  {
+    "lat": "22.372928",
+    "long": "114.180132",
+    "name_en": "TAI WAI STATION BUS TERMINUS",
+    "name_sc": "大围站总站",
+    "name_tc": "大圍站總站",
+    "stop": "6C9B7DDF24725CA9"
+  },
+  {
+    "lat": "22.372976",
+    "long": "114.180213",
+    "name_en": "TAI WAI STATION BUS TERMINUS",
+    "name_sc": "大围站总站",
+    "name_tc": "大圍站總站",
+    "stop": "8C7CF1C55484A294"
+  },
+  {
+    "lat": "22.372606",
+    "long": "114.180304",
+    "name_en": "TAI WAI STATION",
+    "name_sc": "大围站",
+    "name_tc": "大圍站",
+    "stop": "A66159E033DDEA04"
+  },
+  {
+    "lat": "22.372804",
+    "long": "114.180216",
+    "name_en": "TAI WAI STATION BUS TERMINUS",
+    "name_sc": "大围站总站",
+    "name_tc": "大圍站總站",
+    "stop": "B49F719CC4A8BD7E"
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "co": "KMB",
+    "data_timestamp": "2022-06-01T20:19:43+08:00",
+    "dest_en": "TAI WAI STATION",
+    "dest_sc": "大围站",
+    "dest_tc": "大圍站",
+    "dir": "O",
+    "eta": null,
+    "eta_seq": 1,
+    "rmk_en": "",
+    "rmk_sc": "",
+    "rmk_tc": "",
+    "route": "82B",
+    "seq": 3,
+    "service_type": 1
+  }
+]

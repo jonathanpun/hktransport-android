@@ -1,0 +1,112 @@
+[
+  {
+    "route": "1",
+    "bound": "I",
+    "service_type": "1",
+    "orig_en": "STAR FERRY",
+    "orig_tc": "尖沙咀碼頭",
+    "orig_sc": "尖沙咀码头",
+    "dest_en": "CHUK YUEN ESTATE",
+    "dest_tc": "竹園邨",
+    "dest_sc": "竹园邨"
+  },
+  {
+    "route": "101",
+    "bound": "I",
+    "service_type": "1",
+    "orig_en": "KENNEDY TOWN",
+    "orig_tc": "堅尼地城",
+    "orig_sc": "坚尼地城",
+    "dest_en": "KWUN TONG (YUE MAN SQUARE)",
+    "dest_tc": "觀塘(裕民坊)",
+    "dest_sc": "观塘(裕民坊)"
+  },
+  {
+    "route": "101",
+    "bound": "I",
+    "service_type": "2",
+    "orig_en": "DES VOEUX RD CENTRAL",
+    "orig_tc": "德輔道中",
+    "orig_sc": "德辅道中",
+    "dest_en": "KWUN TONG (YUE MAN SQUARE)",
+    "dest_tc": "觀塘(裕民坊)",
+    "dest_sc": "观塘(裕民坊)"
+  },
+  {
+    "route": "101",
+    "bound": "I",
+    "service_type": "5",
+    "orig_en": "ARSENAL STREET",
+    "orig_tc": "軍器廠街",
+    "orig_sc": "军器厂街",
+    "dest_en": "KWUN TONG (YUE MAN SQUARE)",
+    "dest_tc": "觀塘(裕民坊)",
+    "dest_sc": "观塘(裕民坊)"
+  },
+  {
+    "route": "101X",
+    "bound": "I",
+    "service_type": "1",
+    "orig_en": "KENNEDY TOWN",
+    "orig_tc": "堅尼地城",
+    "orig_sc": "坚尼地城",
+    "dest_en": "KWUN TONG (YUE MAN SQUARE)",
+    "dest_tc": "觀塘(裕民坊)",
+    "dest_sc": "观塘(裕民坊)"
+  },
+  {
+    "route": "102",
+    "bound": "I",
+    "service_type": "1",
+    "orig_en": "MEI FOO",
+    "orig_tc": "美孚",
+    "orig_sc": "美孚",
+    "dest_en": "SHAU KEI WAN",
+    "dest_tc": "筲箕灣",
+    "dest_sc": "筲箕湾"
+  },
+  {
+    "route": "102P",
+    "bound": "I",
+    "service_type": "1",
+    "orig_en": "MEI FOO",
+    "orig_tc": "美孚",
+    "orig_sc": "美孚",
+    "dest_en": "SHAU KEI WAN",
+    "dest_tc": "筲箕灣",
+    "dest_sc": "筲箕湾"
+  },
+  {
+    "route": "102P",
+    "bound": "I",
+    "service_type": "3",
+    "orig_en": "HUNG HOM CROSS HARBOUR TUNNEL",
+    "orig_tc": "紅磡海底隧道",
+    "orig_sc": "红磡海底隧道",
+    "dest_en": "SHAU KEI WAN",
+    "dest_tc": "筲箕灣",
+    "dest_sc": "筲箕湾"
+  },
+  {
+    "route": "103",
+    "bound": "I",
+    "service_type": "1",
+    "orig_en": "POKFIELD RD",
+    "orig_tc": "蒲飛路",
+    "orig_sc": "蒲飞路",
+    "dest_en": "CHUK YUEN ESTATE",
+    "dest_tc": "竹園邨",
+    "dest_sc": "竹园邨"
+  },
+  {
+    "route": "104",
+    "bound": "I",
+    "service_type": "1",
+    "orig_en": "Sham Shui Po (Pak Tin Estate)",
+    "orig_tc": "深水埗(白田邨)",
+    "orig_sc": "深水埗(白田邨)",
+    "dest_en": "KENNEDY TOWN",
+    "dest_tc": "堅尼地城",
+    "dest_sc": "坚尼地城"
+  }
+]

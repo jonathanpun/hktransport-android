@@ -1,5 +1,6 @@
 package cs.hku.hktransportandroid.repository
 
+import cs.hku.hktransportandroid.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -12,7 +13,10 @@ class APIRepository {
         .addConverterFactory(MoshiConverterFactory.create())
         .client(OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().apply {
             level= HttpLoggingInterceptor.Level.BODY
-        }).build())
+        }).apply {
+            if (BuildConfig.FLAVOR.contains("stub"))
+                addInterceptor(StubInterceptor())
+        }.build())
         .build()
     private fun getService()= retrofit.create(APIService::class.java)
 
