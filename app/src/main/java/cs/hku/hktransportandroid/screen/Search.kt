@@ -1,18 +1,20 @@
 package cs.hku.hktransportandroid.screen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.material.TopAppBar
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.widget.Placeholder
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import cs.hku.hktransportandroid.SearchResult
@@ -21,28 +23,66 @@ import cs.hku.hktransportandroid.SearchViewModel
 @Composable
 fun Search(navController: NavController, viewModel: SearchViewModel = viewModel()) {
     val searchKeyword = viewModel.searchKeyword.collectAsState(initial = "")
+    val searchHistory = viewModel.searchHistory.collectAsState(initial = null)
     val resultList = viewModel.list.collectAsState(initial = null)
-    Scaffold(topBar = {TopAppBar(title = { Text("Search") })}) {
+    Scaffold(topBar = { TopAppBar(title = { Text("Search") }) }) {
         Column(Modifier.padding(it)) {
-            TextField(modifier = Modifier.fillMaxWidth(), value = searchKeyword.value.orEmpty(), onValueChange = {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(vertical = 4.dp)
+            ) {
+                OutlinedTextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(56.dp)
+                        .padding(horizontal = 4.dp),
+                    placeholder = {Text("Route/Bus stop")},
+                    leadingIcon = {Icon (Icons.Filled.Search,
+                        contentDescription = "")}
+                , value = searchKeyword.value.orEmpty(), onValueChange = {
                 viewModel.onNewSearchKeyword(it)
-            })
-            resultList.value?.let { searchResult->
-                if(searchResult.route.isNotEmpty()){
-                    Text(text = "Route", modifier = Modifier.padding(start = 16.dp), fontSize = 16.sp)
-                    searchResult.route.map { 
-                        Text(text = it.route, modifier = Modifier.padding(start = 24.dp), fontSize = 14.sp)
+            }, )
+            }
+            val searchResult = resultList.value?:searchHistory.value
+            if(resultList.value == null&&searchHistory.value!=null){
+                Text(text = "Search history",
+                    fontSize = 24.sp,
+                    modifier = Modifier.padding(horizontal = 16.dp))
+                Spacer(modifier = Modifier.height(6.dp))
+            }
+            if (searchResult!=null){
+                if (searchResult.route.isNotEmpty()) {
+                    Text(
+                        text = "Route",
+                        modifier = Modifier.padding(start = 16.dp),
+                        fontSize = 20.sp
+                    )
+                    searchResult.route.map {
+                        Text(
+                            text = it.route,
+                            modifier = Modifier.padding(start = 24.dp).fillMaxWidth(),
+                            fontSize = 16.sp
+                        )
                     }
                 }
-                if (searchResult.stops.isNotEmpty()){
-                    Text(text = "Stop", modifier = Modifier.padding(start = 16.dp), fontSize = 16.sp)
+                Spacer(modifier = Modifier.height(6.dp))
+                if (searchResult.stops.isNotEmpty()) {
+                    Text(
+                        text = "Stop",
+                        modifier = Modifier.padding(start = 16.dp),
+                        fontSize = 20.sp
+                    )
                     searchResult.stops.map {
-                        Text(text = it.nameTc, modifier = Modifier.padding(start = 24.dp).clickable {
-                            navController.navigate("stop/${it.stop}")
-                        }, fontSize = 14.sp)
+                        Text(text = it.nameTc, modifier = Modifier
+                            .padding(start = 24.dp)
+                            .fillMaxWidth()
+                            .clickable {
+                                navController.navigate("stop/${it.stop}")
+                            }, fontSize = 16.sp
+                        )
                     }
                 }
-                
+
             }
         }
     }
