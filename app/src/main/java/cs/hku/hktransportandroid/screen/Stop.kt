@@ -1,7 +1,9 @@
 package cs.hku.hktransportandroid.screen
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -21,36 +23,64 @@ import com.google.maps.android.compose.rememberCameraPositionState
 import cs.hku.hktransportandroid.screen.view.StopEta
 
 @Composable
-fun Stop(navController: NavController,stopId:String,viewModel: StopViewModel = viewModel(factory = object :ViewModelProvider.Factory{
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return  StopViewModel(stopId) as T
-    }
-})){
+fun Stop(
+    navController: NavController,
+    stopId: String,
+    viewModel: StopViewModel = viewModel(factory = object : ViewModelProvider.Factory {
+        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+            return StopViewModel(stopId) as T
+        }
+    })
+) {
     val stop = viewModel.stop.collectAsState(initial = null)
     val stopEta = viewModel.stopEta.collectAsState(initial = null)
     val cameraPositionState = rememberCameraPositionState {
         //TST
-        position = CameraPosition.fromLatLngZoom(LatLng(22.29735258383955, 114.17205794244728), 22f)
+        position = CameraPosition.fromLatLngZoom(LatLng(22.29735258383955, 114.17205794244728), 17f)
     }
     stop.value?.let {
-        cameraPositionState.move(CameraUpdateFactory.newLatLng(LatLng(it.lat.toDouble(),it.long.toDouble())))
+        cameraPositionState.move(
+            CameraUpdateFactory.newLatLng(
+                LatLng(
+                    it.lat.toDouble(),
+                    it.long.toDouble()
+                )
+            )
+        )
     }
-    Column() {
-        Text(stop.value?.nameTc.orEmpty())
-        GoogleMap(
-            modifier = Modifier
-                .width(400.dp)
-                .height(400.dp),
-            cameraPositionState = cameraPositionState
-        ){
-            stop.value?.let { Marker(
-                state = MarkerState(position = (LatLng(it.lat.toDouble(),it.long.toDouble()))),
+    Scaffold(
+        topBar = {
+            TopAppBar(title = {
+                Text(stop.value?.nameTc.orEmpty())
+            })
+        }
+    ) {
+        Column(Modifier.padding(it)) {
+            GoogleMap(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
+                cameraPositionState = cameraPositionState
+            ) {
+                stop.value?.let {
+                    Marker(
+                        state = MarkerState(
+                            position = (LatLng(
+                                it.lat.toDouble(),
+                                it.long.toDouble()
+                            ))
+                        ),
 
-            ) }
+                        )
+                }
+            }
+            Spacer(modifier = Modifier.height(12.dp))
+            stopEta.value?.map {
+                StopEta(stopEta = it)
+                Spacer(modifier = Modifier.height(4.dp))
+            }
         }
-        stopEta.value?.map {
-            StopEta(stopEta = it)
-        }
+
     }
 }
 

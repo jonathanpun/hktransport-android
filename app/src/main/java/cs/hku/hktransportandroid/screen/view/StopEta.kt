@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DirectionsBus
 import androidx.compose.material.icons.filled.Expand
 import androidx.compose.material.icons.filled.ExpandLess
 import androidx.compose.material.icons.filled.ExpandMore
@@ -42,28 +43,44 @@ fun StopEta(@PreviewParameter(StopEtaGroupedPreviewParameterProvider::class) sto
         else
             this
     }) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        ) {
             Column {
-                Text(text = stopEta.route, fontSize = 20.sp)
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Filled.DirectionsBus,"", modifier = Modifier.size(16.dp))
+                    Text(text = stopEta.route, fontSize = 20.sp)
+                }
                 Text(text = stopEta.destination.getWithLocale(LocalContext.current.resources.configuration.locales))
             }
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                modifier = Modifier.padding(end= if (!canToggle)16.dp else 0.dp),
+                modifier = Modifier.padding(end = if (!canToggle) 16.dp else 0.dp),
                 fontSize = 30.sp,
-                text = stopEta.arrivalTime.firstOrNull()?.minutesFromNow()?.toString().orEmpty()
+                text = stopEta.arrivalTime.firstOrNull()?.minutesFromNow()?.toString()?:"-"
             )
             if (canToggle)
-                Icon(modifier = Modifier
-                    .width(16.dp)
-                    .height(16.dp), imageVector =  if (toggle.value) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore, contentDescription =  "")
+                Icon(
+                    modifier = Modifier
+                        .width(16.dp)
+                        .height(16.dp),
+                    imageVector = if (toggle.value) Icons.Filled.ExpandLess else Icons.Filled.ExpandMore,
+                    contentDescription = ""
+                )
         }
         if (toggle.value) {
             stopEta.arrivalTime.drop(1).map {
-                Box(contentAlignment = Alignment.CenterEnd, modifier = Modifier.fillMaxWidth().padding(end = 16.dp)) {
+                Box(
+                    contentAlignment = Alignment.CenterEnd,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(end = 32.dp)
+                ) {
                     Text(
                         fontSize = 30.sp,
-                        text = stopEta.arrivalTime.firstOrNull()?.minutesFromNow()?.toString().orEmpty()
+                        text = stopEta.arrivalTime.firstOrNull()?.minutesFromNow()?.toString()
+                            .orEmpty()
                     )
                 }
             }
