@@ -15,6 +15,8 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import cs.hku.hktransportandroid.screen.view.StopEta
 
@@ -28,7 +30,7 @@ fun Stop(navController: NavController,stopId:String,viewModel: StopViewModel = v
     val stopEta = viewModel.stopEta.collectAsState(initial = null)
     val cameraPositionState = rememberCameraPositionState {
         //TST
-        position = CameraPosition.fromLatLngZoom(LatLng(22.29735258383955, 114.17205794244728), 10f)
+        position = CameraPosition.fromLatLngZoom(LatLng(22.29735258383955, 114.17205794244728), 22f)
     }
     stop.value?.let {
         cameraPositionState.move(CameraUpdateFactory.newLatLng(LatLng(it.lat.toDouble(),it.long.toDouble())))
@@ -40,9 +42,14 @@ fun Stop(navController: NavController,stopId:String,viewModel: StopViewModel = v
                 .width(400.dp)
                 .height(400.dp),
             cameraPositionState = cameraPositionState
-        )
+        ){
+            stop.value?.let { Marker(
+                state = MarkerState(position = (LatLng(it.lat.toDouble(),it.long.toDouble()))),
+
+            ) }
+        }
         stopEta.value?.map {
-//            StopEta(stopEta = it)
+            StopEta(stopEta = it)
         }
     }
 }
