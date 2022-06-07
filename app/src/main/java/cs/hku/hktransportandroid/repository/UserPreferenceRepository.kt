@@ -1,7 +1,10 @@
 package cs.hku.hktransportandroid.repository
 
+import androidx.room.Dao
+import cs.hku.hktransportandroid.Entity.SavedPoint
+
 class UserPreferenceRepository {
-    fun saveStop(stopId:String){
+    fun saveStop(savedPoint: SavedPoint){
         //todo
     }
     fun getSavedStop():List<String>{

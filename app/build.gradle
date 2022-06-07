@@ -87,7 +87,10 @@ dependencies {
     //google map
     implementation 'com.google.maps.android:maps-compose:2.1.1'
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
-
+    //room
+    def room_version = "2.4.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
     //moshi
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
     implementation"com.squareup.moshi:moshi:1.13.0"
