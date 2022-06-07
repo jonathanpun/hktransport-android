@@ -37,7 +37,7 @@ class StopViewModel @Inject constructor(private val savedStateHandle: SavedState
     fun saveRouteStop(route:String){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
-                _stop.value?.let { userPreferenceRepository.saveStop(SavedPoint(0,SavedPoint.SavedPointType.ROUTE_STOP,route,it.stop)) }
+                _stop.value?.let { userPreferenceRepository.saveStop(SavedPoint(SavedPoint.SavedPointType.ROUTE_STOP,route,it.stop)) }
             }
         }
     }

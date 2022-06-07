@@ -1,6 +1,7 @@
 package cs.hku.hktransportandroid.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import cs.hku.hktransportandroid.Entity.SavedPoint
@@ -12,4 +13,6 @@ interface SavedPointDao {
     fun getUserSavedPoints(): Flow<List<SavedPoint>>
     @Insert
     fun addSavedPoints(savedPoint: SavedPoint)
+    @Delete
+    fun removeSavedPoint(savedPoint: SavedPoint)
 }

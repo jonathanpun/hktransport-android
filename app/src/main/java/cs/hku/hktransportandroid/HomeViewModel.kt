@@ -11,6 +11,7 @@ import cs.hku.hktransportandroid.repository.Stop
 import cs.hku.hktransportandroid.repository.StopEta
 import cs.hku.hktransportandroid.repository.UserPreferenceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.*
@@ -36,6 +37,10 @@ class HomeViewModel @Inject constructor(private val repository :APIRepository,
         emit(stopEtaMap)
    }
 
-
+    fun removeSavedPoint(route:String,stop:String){
+        viewModelScope.launch(Dispatchers.IO) {
+            userPreferenceRepository.removeSavedStop(SavedPoint(SavedPoint.SavedPointType.ROUTE_STOP,route,stop))
+        }
+    }
 
 }

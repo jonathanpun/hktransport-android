@@ -4,10 +4,8 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(primaryKeys = ["type","route","stop"])
 data class SavedPoint(
-    @PrimaryKey(autoGenerate = true)
-    val id:Int,
     @ColumnInfo(name = "type")
     val type:SavedPointType,
     @ColumnInfo(name ="route")

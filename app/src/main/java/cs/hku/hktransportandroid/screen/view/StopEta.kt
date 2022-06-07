@@ -1,6 +1,8 @@
 package cs.hku.hktransportandroid.screen.view
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -25,24 +27,25 @@ import cs.hku.hktransportandroid.util.minutesFromNow
 import cs.hku.hktransportandroid.util.toTime
 import java.time.LocalDateTime
 
+@OptIn(ExperimentalFoundationApi::class)
 @Preview
 @Composable
 fun StopEta(@PreviewParameter(StopEtaGroupedPreviewParameterProvider::class)
             stopEta: StopEtaGrouped,
-addAction:(()->Unit)? = null) {
+onLongClick:(()->Unit)? = null) {
     val toggle = remember {
         mutableStateOf(false)
     }
     val canToggle = stopEta.arrivalTime.size > 1
-    Column(modifier = Modifier.run {
-        if (canToggle)
-            clickable {
-                if (canToggle)
-                    toggle.value = !toggle.value
-            }
-        else
-            this
-    }) {
+    Column(modifier =
+    Modifier.combinedClickable(
+        enabled = canToggle || onLongClick !=null,
+        onClick = {
+            if (canToggle)
+                toggle.value = !toggle.value
+        },
+        onLongClick = {onLongClick?.invoke()}
+    )) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.padding(horizontal = 16.dp)
@@ -60,11 +63,6 @@ addAction:(()->Unit)? = null) {
                 fontSize = 30.sp,
                 text = stopEta.arrivalTime.firstOrNull()?.minutesFromNow()?.toString()?:"-"
             )
-            if (addAction!=null){
-                IconButton(onClick = {
-                    addAction.invoke()
-                }, content = {Icon(Icons.Filled.Add,"add")})
-            }
             if (canToggle)
                 Icon(
                     modifier = Modifier

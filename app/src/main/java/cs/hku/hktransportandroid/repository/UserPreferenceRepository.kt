@@ -14,4 +14,7 @@ class UserPreferenceRepository @Inject constructor(private val savedPointDao: Sa
     fun getSavedStop(): Flow<List<SavedPoint>> {
         return savedPointDao.getUserSavedPoints()
     }
+    fun removeSavedStop(savedPoint: SavedPoint){
+        savedPointDao.removeSavedPoint(savedPoint)
+    }
 }
