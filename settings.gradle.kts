@@ -7,4 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "HKTransportAndroid"
-include ':app'
+include ("app")
