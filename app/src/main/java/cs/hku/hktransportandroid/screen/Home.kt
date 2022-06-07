@@ -16,7 +16,7 @@ import cs.hku.hktransportandroid.HomeViewModel
 import cs.hku.hktransportandroid.screen.view.StopEta
 
 @Composable
-fun Home(navController: NavController, viewModel: HomeViewModel = viewModel()){
+fun Home(navController: NavController, viewModel: HomeViewModel ){
     val map = viewModel.stopEtaMap.collectAsState(initial = null)
    Scaffold(topBar = { TopAppBar(title = { Text(text = "Home")})}) { padding->
        Column(modifier = Modifier

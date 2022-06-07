@@ -20,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -29,7 +30,9 @@ import androidx.navigation.compose.composable
 import cs.hku.hktransportandroid.screen.Home
 import cs.hku.hktransportandroid.screen.Search
 import cs.hku.hktransportandroid.screen.Stop
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +74,7 @@ class MainActivity : ComponentActivity() {
                 }
             ) { innerPadding ->
                 NavHost(navController, startDestination = Screen.Home.route, Modifier.padding(innerPadding)) {
-                    composable(Screen.Home.route) { Home(navController) }
+                    composable(Screen.Home.route) { Home(navController, hiltViewModel()) }
                     composable(Screen.Search.route) { Search(navController) }
                     composable(Screen.Stop.route){navBackStackEntry ->  Stop(navController,navBackStackEntry.arguments?.getString("Id").orEmpty())}
                 }

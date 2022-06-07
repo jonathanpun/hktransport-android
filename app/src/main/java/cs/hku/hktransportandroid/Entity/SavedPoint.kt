@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class SavedPoint(
     @PrimaryKey(autoGenerate = true)
-    val id:String,
+    val id:Int,
     @ColumnInfo(name = "type")
     val type:SavedPointType,
     @ColumnInfo(name ="route")

@@ -7,8 +7,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Inject
 
-class APIRepository {
+class APIRepository @Inject constructor() {
     val retrofit = Retrofit.Builder().baseUrl("http://192.168.0.195:8080")
         .addConverterFactory(MoshiConverterFactory.create())
         .client(OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().apply {
