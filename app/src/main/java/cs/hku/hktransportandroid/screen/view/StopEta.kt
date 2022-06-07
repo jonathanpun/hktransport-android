@@ -84,8 +84,8 @@ addAction:(()->Unit)? = null) {
                 ) {
                     Text(
                         fontSize = 30.sp,
-                        text = stopEta.arrivalTime.firstOrNull()?.minutesFromNow()?.toString()
-                            .orEmpty()
+                        text = it.minutesFromNow().toString()
+
                     )
                 }
             }
