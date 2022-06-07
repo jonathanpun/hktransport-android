@@ -1,9 +1,9 @@
 package cs.hku.hktransportandroid.screen
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
@@ -25,12 +25,7 @@ import cs.hku.hktransportandroid.screen.view.StopEta
 @Composable
 fun Stop(
     navController: NavController,
-    stopId: String,
-    viewModel: StopViewModel = viewModel(factory = object : ViewModelProvider.Factory {
-        override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-            return StopViewModel(stopId) as T
-        }
-    })
+    viewModel: StopViewModel
 ) {
     val stop = viewModel.stop.collectAsState(initial = null)
     val stopEta = viewModel.stopEta.collectAsState(initial = null)
@@ -76,7 +71,9 @@ fun Stop(
             }
             Spacer(modifier = Modifier.height(12.dp))
             stopEta.value?.map {
-                StopEta(stopEta = it)
+                StopEta(stopEta = it, addAction = {
+                    viewModel.saveRouteStop(it.route)
+                })
                 Spacer(modifier = Modifier.height(4.dp))
             }
         }

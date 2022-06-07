@@ -3,12 +3,10 @@ package cs.hku.hktransportandroid.screen.view
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DirectionsBus
-import androidx.compose.material.icons.filled.Expand
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -29,7 +27,9 @@ import java.time.LocalDateTime
 
 @Preview
 @Composable
-fun StopEta(@PreviewParameter(StopEtaGroupedPreviewParameterProvider::class) stopEta: StopEtaGrouped) {
+fun StopEta(@PreviewParameter(StopEtaGroupedPreviewParameterProvider::class)
+            stopEta: StopEtaGrouped,
+addAction:(()->Unit)? = null) {
     val toggle = remember {
         mutableStateOf(false)
     }
@@ -60,6 +60,11 @@ fun StopEta(@PreviewParameter(StopEtaGroupedPreviewParameterProvider::class) sto
                 fontSize = 30.sp,
                 text = stopEta.arrivalTime.firstOrNull()?.minutesFromNow()?.toString()?:"-"
             )
+            if (addAction!=null){
+                IconButton(onClick = {
+                    addAction.invoke()
+                }, content = {Icon(Icons.Filled.Add,"add")})
+            }
             if (canToggle)
                 Icon(
                     modifier = Modifier

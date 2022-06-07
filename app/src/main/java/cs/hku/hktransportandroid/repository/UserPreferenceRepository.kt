@@ -9,9 +9,9 @@ import javax.inject.Inject
 
 class UserPreferenceRepository @Inject constructor(private val savedPointDao: SavedPointDao){
     fun saveStop(savedPoint: SavedPoint){
-        //todo
+        savedPointDao.addSavedPoints(savedPoint)
     }
-    fun getSavedStop():List<String>{
-        return listOf("A66159E033DDEA04")
+    fun getSavedStop(): Flow<List<SavedPoint>> {
+        return savedPointDao.getUserSavedPoints()
     }
 }
