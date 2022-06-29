@@ -30,6 +30,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import cs.hku.hktransportandroid.screen.Home
+import cs.hku.hktransportandroid.screen.Route
 import cs.hku.hktransportandroid.screen.Search
 import cs.hku.hktransportandroid.screen.Stop
 import dagger.hilt.android.AndroidEntryPoint
@@ -77,10 +78,14 @@ class MainActivity : ComponentActivity() {
             ) { innerPadding ->
                 NavHost(navController, startDestination = Screen.Home.route, Modifier.padding(innerPadding)) {
                     composable(Screen.Home.route) { Home(navController, hiltViewModel()) }
-                    composable(Screen.Search.route) { Search(navController) }
+                    composable(Screen.Search.route) { Search(navController, hiltViewModel()) }
                     composable(Screen.Stop.route, arguments = listOf(navArgument("id"){type=
                         NavType.StringType})){ navBackStackEntry ->  Stop(navController,
                         hiltViewModel())}
+                    composable(Screen.Route.route, arguments = listOf(navArgument("route"){type= NavType.StringType},
+                        navArgument("bound") {type= NavType.StringType},
+                        navArgument("serviceType"){type= NavType.StringType}))
+                    { Route(navController, hiltViewModel() )}
                 }
             }
         }
@@ -90,6 +95,7 @@ class MainActivity : ComponentActivity() {
         object Home : Screen("home", R.string.home)
         object Search : Screen("search", R.string.search)
         object Stop:Screen("stop/{id}",R.string.stop)
+        object Route:Screen("routes/{route}/{bound}/{serviceType}",R.string.route)
     }
 
 

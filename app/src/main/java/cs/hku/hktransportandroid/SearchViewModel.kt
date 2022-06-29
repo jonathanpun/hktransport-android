@@ -26,7 +26,8 @@ class SearchViewModel : ViewModel() {
                     origSc = "显径",
                     origTc = "顯徑",
                     route = "46X",
-                    serviceType = "1"
+                    serviceType = "1",
+                    lineGeometry = emptyList()
                 )
             ),
             stops = listOf(
@@ -35,7 +36,8 @@ class SearchViewModel : ViewModel() {
                     nameEn = "MORSE PARK SPORTS CENTRE",
                     nameSc = "摩士公园体育馆",
                     nameTc = "摩士公園體育館",
-                    stop = "713BF17AF24FE4DA")
+                    stop = "713BF17AF24FE4DA",
+                eta = null)
             )
         )
     )

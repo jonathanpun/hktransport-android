@@ -33,8 +33,20 @@ class APIRepository @Inject constructor() {
         withContext(Dispatchers.IO){
             getService().searchRoute(q,limit)
         }
+    suspend fun getRouteWithBound(route:String,bound:String):List<Route> = withContext(Dispatchers.IO){
+        getService().getRouteWithBound(route,bound)
+    }
+    suspend fun getRouteWithBoundAndServiceType(route:String,bound:String,serviceType:String)= withContext(Dispatchers.IO){
+        getService().getRouteWithBoundAndServiceType(route,bound,serviceType)
+    }
     suspend fun getStop(stopId:String):Stop =
         withContext(Dispatchers.IO){
             getService().getStop(stopId)
         }
+    suspend fun getRouteStop(route:String,bound:String,serviceType:String) = withContext(Dispatchers.IO){
+        getService().getRouteStops(route, bound, serviceType)
+    }
+    suspend fun getRouteEta(route:String,serviceType:String) = withContext(Dispatchers.IO){
+        getService().getRouteStopEta(route, serviceType)
+    }
 }

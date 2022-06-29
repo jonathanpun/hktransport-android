@@ -49,8 +49,10 @@ data class Stop(
     @Json(name = "name_tc")
     val nameTc: String,
     @Json(name = "stop")
-    val stop: String
+    val stop: String,
+    val eta: List<StopEta>?
 )
+
 
 @JsonClass(generateAdapter = true)
 data class Route(
@@ -62,6 +64,8 @@ data class Route(
     val destSc: String,
     @Json(name = "dest_tc")
     val destTc: String,
+    @Json(name = "line_geometry")
+    val lineGeometry: List<List<Double>>?,
     @Json(name = "orig_en")
     val origEn: String,
     @Json(name = "orig_sc")
@@ -73,3 +77,4 @@ data class Route(
     @Json(name = "service_type")
     val serviceType: String
 )
+

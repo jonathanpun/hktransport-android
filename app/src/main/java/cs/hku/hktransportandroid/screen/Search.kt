@@ -21,7 +21,7 @@ import cs.hku.hktransportandroid.SearchResult
 import cs.hku.hktransportandroid.SearchViewModel
 
 @Composable
-fun Search(navController: NavController, viewModel: SearchViewModel = viewModel()) {
+fun Search(navController: NavController, viewModel: SearchViewModel) {
     val searchKeyword = viewModel.searchKeyword.collectAsState(initial = "")
     val searchHistory = viewModel.searchHistory.collectAsState(initial = null)
     val resultList = viewModel.list.collectAsState(initial = null)
@@ -58,11 +58,24 @@ fun Search(navController: NavController, viewModel: SearchViewModel = viewModel(
                         fontSize = 20.sp
                     )
                     searchResult.route.map {
-                        Text(
-                            text = it.route,
-                            modifier = Modifier.padding(start = 24.dp).fillMaxWidth(),
-                            fontSize = 16.sp
-                        )
+                        Column(modifier = Modifier
+                            .padding(start = 24.dp)
+                            .fillMaxWidth()
+                            .clickable {
+                                navController.navigate("routes/${it.route}/${it.bound}/${it.serviceType}")
+                            },) {
+                            Text(
+                                text = it.route,
+                                fontSize = 16.sp
+                            )
+                            Text(
+                                text = "To: ${it.destTc}",
+                                fontSize = 14.sp,
+                                color = Color.Gray
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(4.dp))
+
                     }
                 }
                 Spacer(modifier = Modifier.height(6.dp))
