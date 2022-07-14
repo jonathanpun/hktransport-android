@@ -11,6 +11,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Route
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -29,10 +30,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import cs.hku.hktransportandroid.screen.Home
-import cs.hku.hktransportandroid.screen.Route
-import cs.hku.hktransportandroid.screen.Search
-import cs.hku.hktransportandroid.screen.Stop
+import cs.hku.hktransportandroid.screen.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,6 +41,7 @@ class MainActivity : ComponentActivity() {
             val items = listOf(
                 Screen.Home to Icons.Filled.Home,
                 Screen.Search to Icons.Filled.Search,
+                Screen.Plan to Icons.Filled.Route
             )
             val navController = rememberNavController()
             val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -79,6 +78,7 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController, startDestination = Screen.Home.route, Modifier.padding(innerPadding)) {
                     composable(Screen.Home.route) { Home(navController, hiltViewModel()) }
                     composable(Screen.Search.route) { Search(navController, hiltViewModel()) }
+                    composable(Screen.Plan.route){ Plan(navController, hiltViewModel())}
                     composable(Screen.Stop.route, arguments = listOf(navArgument("id"){type=
                         NavType.StringType})){ navBackStackEntry ->  Stop(navController,
                         hiltViewModel())}
@@ -96,6 +96,7 @@ class MainActivity : ComponentActivity() {
         object Search : Screen("search", R.string.search)
         object Stop:Screen("stop/{id}",R.string.stop)
         object Route:Screen("routes/{route}/{bound}/{serviceType}",R.string.route)
+        object Plan:Screen("plan",R.string.plan)
     }
 
 

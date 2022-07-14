@@ -4,4 +4,5 @@
     <string name="search">search</string>
     <string name="stop">Stop</string>
     <string name="route">routes</string>
+    <string name="plan">Plan</string>
 </resources>

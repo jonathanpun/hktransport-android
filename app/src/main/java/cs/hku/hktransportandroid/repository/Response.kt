@@ -53,6 +53,22 @@ data class Stop(
     val eta: List<StopEta>?
 )
 
+@JsonClass(generateAdapter = true)
+data class RecommendedRoute(
+    @Json(name = "routeStops")
+    val routeStops:List<Route>
+){
+    @JsonClass(generateAdapter = true)
+    data class Route(
+        @Json(name = "route")
+        val route:cs.hku.hktransportandroid.repository.Route,
+        @Json(name = "stops")
+        val stops :List<Stop>,
+        @Json(name = "pathList")
+        val pathList:List<List<Double>>
+    )
+}
+
 
 @JsonClass(generateAdapter = true)
 data class Route(
@@ -78,3 +94,15 @@ data class Route(
     val serviceType: String
 )
 
+@JsonClass(generateAdapter = true)
+data class StopTextSearch(
+    val id:Int,
+    @Json(name = "name_en")
+    val nameEn: String,
+    @Json(name = "name_sc")
+    val nameSc: String,
+    @Json(name = "name_tc")
+    val nameTc: String,
+    @Json(name="stops")
+    val stopsIds :List<String>
+    )

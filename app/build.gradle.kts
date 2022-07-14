@@ -60,6 +60,7 @@ dependencies {
     implementation ("androidx.navigation:navigation-compose:$navVersion")
 
     //compose
+    implementation("com.google.accompanist:accompanist-flowlayout:0.24.13-rc")
     implementation ("androidx.compose.ui:ui:1.2.0-beta02")
     // Tooling support (Previews, etc.)
     implementation ("androidx.compose.ui:ui-tooling:1.2.0-beta02")
@@ -70,8 +71,8 @@ dependencies {
     // Material Design
     implementation ("androidx.compose.material:material:1.2.0-beta02")
     // Material design icons
-    implementation ("androidx.compose.material:material-icons-core:1.1.1")
-    implementation ("androidx.compose.material:material-icons-extended:1.1.1")
+    implementation ("androidx.compose.material:material-icons-core:1.2.0-alpha07")
+    implementation ("androidx.compose.material:material-icons-extended:1.2.0-alpha07")
     // Integration with activities
     implementation ("androidx.activity:activity-compose:1.4.0")
     // Integration with ViewModels

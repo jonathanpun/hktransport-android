@@ -25,7 +25,7 @@ class APIRepository @Inject constructor() {
         withContext(Dispatchers.IO){
             getService().getStopEta(stopId)
         }
-    suspend fun searchStop(q:String):List<Stop> =
+    suspend fun searchStop(q:String):List<StopTextSearch> =
         withContext(Dispatchers.IO){
             getService().searchStop(q)
         }
@@ -48,5 +48,9 @@ class APIRepository @Inject constructor() {
     }
     suspend fun getRouteEta(route:String,serviceType:String) = withContext(Dispatchers.IO){
         getService().getRouteStopEta(route, serviceType)
+    }
+
+    suspend fun queryRoute(sourceStop:Int,destStop:Int) = withContext(Dispatchers.IO){
+        getService().getRecommendedRoute(sourceStop,destStop)
     }
 }

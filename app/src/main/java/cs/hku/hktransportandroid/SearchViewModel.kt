@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import cs.hku.hktransportandroid.repository.APIRepository
 import cs.hku.hktransportandroid.repository.Route
 import cs.hku.hktransportandroid.repository.Stop
+import cs.hku.hktransportandroid.repository.StopTextSearch
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.runBlocking
@@ -30,15 +31,16 @@ class SearchViewModel : ViewModel() {
                     lineGeometry = emptyList()
                 )
             ),
-            stops = listOf(
-                Stop(lat = "22.338347",
-                    long = "114.189704",
-                    nameEn = "MORSE PARK SPORTS CENTRE",
-                    nameSc = "摩士公园体育馆",
-                    nameTc = "摩士公園體育館",
-                    stop = "713BF17AF24FE4DA",
-                eta = null)
-            )
+            stops = emptyList()
+//            stops = listOf(
+//                Stop(lat = "22.338347",
+//                    long = "114.189704",
+//                    nameEn = "MORSE PARK SPORTS CENTRE",
+//                    nameSc = "摩士公园体育馆",
+//                    nameTc = "摩士公園體育館",
+//                    stop = "713BF17AF24FE4DA",
+//                eta = null)
+//            )
         )
     )
     val searchHistory = _searchHistory as Flow<SearchResult?>
@@ -65,5 +67,5 @@ class SearchViewModel : ViewModel() {
 
 data class SearchResult(
     val route: List<Route>,
-    val stops: List<Stop>
+    val stops: List<StopTextSearch>
 )
