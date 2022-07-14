@@ -80,7 +80,7 @@ class MainActivity : ComponentActivity() {
                     composable(Screen.Search.route) { Search(navController, hiltViewModel()) }
                     composable(Screen.Plan.route){ Plan(navController, hiltViewModel())}
                     composable(Screen.Stop.route, arguments = listOf(navArgument("id"){type=
-                        NavType.StringType})){ navBackStackEntry ->  Stop(navController,
+                        NavType.IntType})){ navBackStackEntry ->  Stop(navController,
                         hiltViewModel())}
                     composable(Screen.Route.route, arguments = listOf(navArgument("route"){type= NavType.StringType},
                         navArgument("bound") {type= NavType.StringType},

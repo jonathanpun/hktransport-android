@@ -53,4 +53,7 @@ class APIRepository @Inject constructor() {
     suspend fun queryRoute(sourceStop:Int,destStop:Int) = withContext(Dispatchers.IO){
         getService().getRecommendedRoute(sourceStop,destStop)
     }
+    suspend fun getStopTextSearch(id:Int)= withContext(Dispatchers.IO){
+        getService().getStopTextSearch(id)
+    }
 }

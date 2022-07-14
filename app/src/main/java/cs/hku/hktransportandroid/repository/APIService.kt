@@ -13,6 +13,8 @@ interface APIService {
     suspend fun searchRoute(@Query("q")query: String,@Query("limit") limit:Int):List<Route>
     @GET("/stop/{stop}")
     suspend fun getStop(@Path("stop") stopId:String):Stop
+    @GET("/stop-text-search/{id}")
+    suspend fun getStopTextSearch(@Path("id")id:Int):StopTextSearch
     @GET("/routes/{route}/{bound}")
     suspend fun getRouteWithBound(@Path("route")route:String,@Path("bound")bound:String):List<Route>
     @GET("/routes/{route}/{bound}/{serviceType}")

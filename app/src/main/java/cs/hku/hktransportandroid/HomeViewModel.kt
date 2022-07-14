@@ -31,7 +31,7 @@ class HomeViewModel @Inject constructor(private val repository :APIRepository,
            viewModelScope.async {
                val stop = repository.getStop(savedPoint.stop)
                val stopEta = repository.getStopEta(savedPoint.stop)
-               stop to stopEta.filter {eta-> eta.route== savedPoint.route }.group()
+               stop to stopEta.filter {eta-> eta.route== savedPoint.route }.group(stop.stop)
            }
        }.awaitAll().toMap()
         emit(stopEtaMap)

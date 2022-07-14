@@ -11,33 +11,32 @@ import cs.hku.hktransportandroid.repository.Stop
 import cs.hku.hktransportandroid.repository.StopEta
 import cs.hku.hktransportandroid.repository.UserPreferenceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
 class StopViewModel @Inject constructor(private val savedStateHandle: SavedStateHandle, val repository:APIRepository, val userPreferenceRepository: UserPreferenceRepository): ViewModel() {
-    val stopId:String = savedStateHandle["id"]!!
-    val _stop = MutableStateFlow<Stop?>(null)
-    val stop = _stop as Flow<Stop?>
+    private val stopTextSearchId:Int = savedStateHandle["id"]!!
+    private val _stops = MutableStateFlow<List<Stop>?>(null)
+    val stops = _stops as Flow<List<Stop>?>
     val _stopEta = MutableStateFlow<List<StopEtaGrouped>?>(null)
     val stopEta = _stopEta as Flow<List<StopEtaGrouped>?>
     init {
         viewModelScope.launch {
-            val stop= repository.getStop(stopId)
-            _stop.value = stop
-            val stopEta = repository.getStopEta(stopId)
-            _stopEta.value =stopEta.group()
+            val stopTextSearch= repository.getStopTextSearch(stopTextSearchId)
+            val stops = stopTextSearch.stopsIds.map { async {  repository.getStop(it)} }.awaitAll()
+            _stops.value = stops
+            val stopEta = stops.map { async { repository.getStopEta(it.stop).group(it.stop) } }.awaitAll().flatten()
+            _stopEta.value =stopEta
 
         }
     }
-    fun saveRouteStop(route:String){
+    fun saveRouteStop(stop:String,route:String){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
-                _stop.value?.let { userPreferenceRepository.saveStop(SavedPoint(SavedPoint.SavedPointType.ROUTE_STOP,route,it.stop)) }
+                userPreferenceRepository.saveStop(SavedPoint(SavedPoint.SavedPointType.ROUTE_STOP,route,stop))
             }
         }
     }

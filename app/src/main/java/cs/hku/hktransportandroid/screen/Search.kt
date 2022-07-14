@@ -90,7 +90,7 @@ fun Search(navController: NavController, viewModel: SearchViewModel) {
                             .padding(start = 24.dp)
                             .fillMaxWidth()
                             .clickable {
-                                //navController.navigate("stop/${it.stop}")
+                                navController.navigate("stop/${it.id}")
                             }, fontSize = 16.sp
                         )
                     }

@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -28,11 +29,8 @@ import cs.hku.hktransportandroid.util.toTime
 import java.time.LocalDateTime
 
 @OptIn(ExperimentalFoundationApi::class)
-@Preview
 @Composable
-fun StopEta(@PreviewParameter(StopEtaGroupedPreviewParameterProvider::class)
-            stopEta: StopEtaGrouped,
-onLongClick:(()->Unit)? = null) {
+fun StopEta(stopEta: StopEtaGrouped, onLongClick:(()->Unit)? = null,iconTint: Color) {
     val toggle = remember {
         mutableStateOf(false)
     }
@@ -52,7 +50,7 @@ onLongClick:(()->Unit)? = null) {
         ) {
             Column {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Icon(Icons.Filled.DirectionsBus,"", modifier = Modifier.size(16.dp))
+                    Icon(Icons.Filled.DirectionsBus,"", modifier = Modifier.size(16.dp), tint = iconTint)
                     Text(text = stopEta.route, fontSize = 20.sp)
                 }
                 Text(text = stopEta.destination.getWithLocale(LocalContext.current.resources.configuration.locales))
@@ -113,21 +111,21 @@ class StopEtaPreviewParameterProvider : PreviewParameterProvider<StopEta> {
         )
 }
 
-class StopEtaGroupedPreviewParameterProvider : PreviewParameterProvider<StopEtaGrouped> {
-    override val values: Sequence<StopEtaGrouped>
-        get() = sequenceOf(
-            StopEtaGrouped(
-                route = "3M",
-                destination = MultiLanguage(
-                    en = "彩雲",
-                    tc = "彩雲",
-                    sc = "彩雲"
-                ), arrivalTime = listOf(
-                    LocalDateTime.now(),
-                    LocalDateTime.now(),
-                    LocalDateTime.now()
-                )
-            )
-        )
-
-}
+//class StopEtaGroupedPreviewParameterProvider : PreviewParameterProvider<StopEtaGrouped> {
+//    override val values: Sequence<StopEtaGrouped>
+//        get() = sequenceOf(
+//            StopEtaGrouped(
+//                route = "3M",
+//                destination = MultiLanguage(
+//                    en = "彩雲",
+//                    tc = "彩雲",
+//                    sc = "彩雲"
+//                ), arrivalTime = listOf(
+//                    LocalDateTime.now(),
+//                    LocalDateTime.now(),
+//                    LocalDateTime.now()
+//                )
+//            )
+//        )
+//
+//}
