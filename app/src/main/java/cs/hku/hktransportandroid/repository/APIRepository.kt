@@ -43,6 +43,10 @@ class APIRepository @Inject constructor() {
         withContext(Dispatchers.IO){
             getService().getStop(stopId)
         }
+    suspend fun getNearStop(lat:Double,lng:Double)=
+        withContext(Dispatchers.IO){
+            getService().getNearStops(lat, lng)
+        }
     suspend fun getRouteStop(route:String,bound:String,serviceType:String) = withContext(Dispatchers.IO){
         getService().getRouteStops(route, bound, serviceType)
     }

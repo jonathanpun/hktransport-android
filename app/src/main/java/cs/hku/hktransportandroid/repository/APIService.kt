@@ -25,4 +25,6 @@ interface APIService {
     suspend fun getRouteStopEta(@Path("route")route:String,@Path("service_type")serviceType:String):List<StopEta>
     @GET("/route-query")
     suspend fun getRecommendedRoute(@Query("sourceStop")sourceStop:Int, @Query("destStop")destStop:Int):List<RecommendedRoute>?
+     @GET("/stop/near-stop")
+     suspend fun getNearStops(@Query("lat")lat:Double,@Query("lng")lng:Double):List<Stop>
 }

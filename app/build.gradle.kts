@@ -15,7 +15,7 @@ android {
     }
     defaultConfig {
         applicationId ="cs.hku.hktransportandroid"
-        minSdk =26
+        minSdk =30
         targetSdk= 32
         versionCode= 1
         versionName ="1.0"
@@ -60,6 +60,7 @@ dependencies {
     implementation ("androidx.navigation:navigation-compose:$navVersion")
 
     //compose
+    implementation("com.google.accompanist:accompanist-permissions:0.24.13-rc")
     implementation("com.google.accompanist:accompanist-flowlayout:0.24.13-rc")
     implementation ("androidx.compose.ui:ui:1.2.0-beta02")
     // Tooling support (Previews, etc.)
@@ -89,6 +90,10 @@ dependencies {
     //google map
     implementation ("com.google.maps.android:maps-compose:2.1.1")
     implementation ("com.google.android.gms:play-services-maps:18.0.2")
+
+    //location
+    implementation ("com.google.android.gms:play-services-location:20.0.0")
+
     //room
     val roomVersion = "2.4.2"
     implementation ("androidx.room:room-runtime:$roomVersion")
