@@ -5,4 +5,6 @@
     <string name="stop">Stop</string>
     <string name="route">routes</string>
     <string name="plan">Plan</string>
+    <string name="channel_name">HKTransport</string>
+    <string name="channel_description">Bus notification</string>
 </resources>
