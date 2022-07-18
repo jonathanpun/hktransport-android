@@ -44,12 +44,12 @@ fun Search(navController: NavController, viewModel: SearchViewModel) {
             }, )
             }
             val searchResult = resultList.value?:searchHistory.value
-            if(resultList.value == null&&searchHistory.value!=null){
-                Text(text = "Search history",
-                    fontSize = 24.sp,
-                    modifier = Modifier.padding(horizontal = 16.dp))
-                Spacer(modifier = Modifier.height(6.dp))
-            }
+//            if(resultList.value == null&&searchHistory.value!=null){
+//                Text(text = "Search history",
+//                    fontSize = 24.sp,
+//                    modifier = Modifier.padding(horizontal = 16.dp))
+//                Spacer(modifier = Modifier.height(6.dp))
+//            }
             if (searchResult!=null){
                 if (searchResult.route.isNotEmpty()) {
                     Text(

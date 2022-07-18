@@ -17,20 +17,21 @@ class SearchViewModel : ViewModel() {
     val searchKeyword = _searchKeyword as Flow<String?>
     val _searchHistory = MutableStateFlow<SearchResult?>(
         SearchResult(
-            route = listOf(
-                Route(
-                    bound = "I",
-                    destEn = "MEI FOO",
-                    destSc = "美孚",
-                    destTc = "美孚",
-                    origEn = "HIN KENG",
-                    origSc = "显径",
-                    origTc = "顯徑",
-                    route = "46X",
-                    serviceType = "1",
-                    lineGeometry = emptyList()
-                )
-            ),
+             route = emptyList(),
+//            route = listOf(
+//                Route(
+//                    bound = "I",
+//                    destEn = "MEI FOO",
+//                    destSc = "美孚",
+//                    destTc = "美孚",
+//                    origEn = "HIN KENG",
+//                    origSc = "显径",
+//                    origTc = "顯徑",
+//                    route = "46X",
+//                    serviceType = "1",
+//                    lineGeometry = emptyList()
+//                )
+//            ),
             stops = emptyList()
 //            stops = listOf(
 //                Stop(lat = "22.338347",
